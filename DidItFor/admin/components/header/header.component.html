@@ -1,0 +1,28 @@
+<div class="admin-header-container">
+  <div class="main-logo"></div>
+  <div class="navigation">
+    <div class="topnav pull-left">
+      <ul>
+        <li>
+          <a [routerLink]="['/home']" title="Home" routerLinkActive="active-link">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/admin/finance']" title="Finance" routerLinkActive="active-link">Finance</a>
+        </li>
+        <li>
+          <a [routerLink]="['/admin/reports']" title="Reports" routerLinkActive="active-link">Reports</a>
+        </li>
+      </ul>
+    </div>
+    <div class="right-links pull-right">
+      <ul>
+        <li>
+          <a title="User ID">{{ user?.email }}</a>
+        </li>
+        <li>
+          <a title="Logout" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

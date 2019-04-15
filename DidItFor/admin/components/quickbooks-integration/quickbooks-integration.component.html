@@ -1,0 +1,46 @@
+<div class="integration">
+  <div class="integration-header">
+    <img class="integration-image" src="./assets/quickbooks.png"/>
+    <h2 class="integration-title">QuickBooks</h2>
+  </div>
+  <div *ngIf="integration; else waitingForIntegration"
+       class="integration-body">
+    <table>
+      <tr>
+        <td>Days to the expiration:</td>
+        <td [ngClass]="{ expires: integration.daysToExpiration <= 30 }">
+          {{integration.daysToExpiration}}
+        </td>
+      </tr>
+      <tr>
+        <td>Activation date:</td>
+        <td>{{integration.activationDate}}</td>
+      </tr>
+      <tr>
+        <td>Status:</td>
+        <td>{{integration.status}}</td>
+      </tr>
+    </table>
+    <button *ngIf="integration.active; else enableButton"
+            class="btn btn-xs disable"
+              (click)="disable()">
+      Disable
+    </button>
+    <ng-template #enableButton>
+      <button class="btn btn-xs enable"
+              (click)="enable()">
+        Enable
+      </button>
+    </ng-template>
+    <button class="btn btn-xs update-token"
+            [disabled]="integration.status === 'Disabled'"
+            (click)="updateToken()">
+      Update token
+    </button>
+  </div>
+  <ng-template #waitingForIntegration>
+    <div class="integration-waiting">
+      <div class="integration-loader"></div>
+    </div>
+  </ng-template>
+</div>

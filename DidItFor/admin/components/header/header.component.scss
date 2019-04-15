@@ -1,0 +1,63 @@
+@import '../../../../styles/gen-mixins';
+@import '../../../../styles/include-media';
+
+.admin-header-container {
+  font-size: 16px;
+  background: #fff;
+  height: 70px;
+  border-bottom: solid 1px #f0f2f4;
+  box-shadow: rgba(0, 0, 0, .1) 0 0 3px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+
+  .main-logo {
+    background-image: url('/assets/logo-admin.png');
+    background-position: 47px center;
+    background-repeat: no-repeat;
+    border-right: solid 1px #f0f2f4;
+    box-shadow: rgba(0, 0, 0, .1) 0 0 3px;
+    float: left;
+    height: 100%;
+    width: 249px;
+  }
+
+  .navigation {
+    height: 100%;
+    padding: 15px 30px 15px 47px;
+  }
+
+  .topnav ul,
+  .right-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .topnav li,
+  .right-links li {
+    float: left;
+    padding: 0 1px;
+  }
+  .topnav li a,
+  .right-links li a {
+    display: block;
+    color: rgba(38, 58, 91, .6);
+    cursor: pointer;
+    padding: 10px 25px;
+    line-height: 20px;
+    font-family: 'AmsiPro-SemiBold', 'Arial', sans-serif;
+    border-radius: 20px;
+  }
+  .topnav li a:hover,
+  .topnav li a.active-link {
+    background: #384762;
+    color: rgba(255, 255, 255, .9);
+    text-decoration: none;
+  }
+  .right-links li a:hover {
+    color: rgba(38, 58, 91, 1);
+    text-decoration: none;
+  }
+}

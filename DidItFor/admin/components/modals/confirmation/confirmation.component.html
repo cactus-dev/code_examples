@@ -1,0 +1,9 @@
+<div class="payouts-modal-content confirmation-popup">
+  <div class="modal-body">
+    <p *ngFor="let str of strings">{{str}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" md-dialog-close>No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmationTrue()">Yes</button>
+  </div>
+</div>

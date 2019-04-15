@@ -1,0 +1,70 @@
+<div class="host-table">
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%">
+          <span>Challenge Name</span>
+          <em (click)="changeSort(sortFields.challengeName)"
+              [class.sort-on-asc]="isSorting(sortFields.challengeName, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.challengeName, orderFields.desc)"></em>
+        </th>
+        <th style="width: 14%">
+          <span>Payout Type</span>
+          <em (click)="changeSort(sortFields.payoutType)"
+              [class.sort-on-asc]="isSorting(sortFields.payoutType, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.payoutType, orderFields.desc)"></em>
+        </th>
+        <th style="width: 16%">
+          <span>Receiver Type</span>
+          <em (click)="changeSort(sortFields.receiverType)"
+              [class.sort-on-asc]="isSorting(sortFields.receiverType, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.receiverType, orderFields.desc)"></em>
+        </th>
+        <th style="width: 22%">
+          <span>Receiver Name</span>
+        </th>
+        <th style="width: 14%">
+          <span>Amount</span>
+          <em (click)="changeSort(sortFields.amount)"
+              [class.sort-on-asc]="isSorting(sortFields.amount, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.amount, orderFields.desc)"></em>
+        </th>
+        <th style="width: 12%">
+          <span>Status</span>
+          <em (click)="changeSort(sortFields.status)"
+              [class.sort-on-asc]="isSorting(sortFields.status, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.status, orderFields.desc)"></em>
+        </th>
+        <th class="no-sort th-last-center"
+            *ngIf="!reportUse">
+          Actions
+          <em></em>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payout of payouts"
+          [class.disabled-item]="!reportUse && !canCancelPayout(payout)">
+        <td>{{ payout.challenge.title }}</td>
+        <td>{{ payoutTypes[payout.payout_type] }}</td>
+        <td>{{ payout.receiver_type }}</td>
+        <td>{{ payout.receiver.name }}</td>
+        <td>{{ formatCentsToDollars(payout.amount_in_cents) }}</td>
+        <td>{{ statuses[payout.status] }}</td>
+        <td *ngIf="!reportUse"
+            class="td-last-center">
+          <button class="btn btn-xs btn1"
+                  [disabled]="!canCancelPayout(payout)"
+                  (click)="onCancelPayout(payout)">
+            Cancel
+          </button>
+          <div class="clearfix"></div>
+          <button class="btn btn-xs btn2"
+                  (click)="showInfo(payout)">
+            Info
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

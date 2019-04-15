@@ -1,0 +1,41 @@
+<div class="payouts-modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" md-dialog-close>&times;</button>
+    <h4 class="modal-title">Batch Refund</h4>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Challenge Name</th>
+            <th>User Name</th>
+            <th width="165">Available Money</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td>{{payment.challenge.title}}</td>
+            <td>{{payment.user?.name || 'undefined'}}</td>
+            <td>{{formatCentsToDollars(payment.amount_in_cents)}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td>Total Sum</td>
+            <td>{{formatCentsToDollars(totalDonations)}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" md-dialog-close>Cancel</button>
+      <button type="submit"
+              class="btn btn-primary">Create</button>
+    </div>
+  </form>
+  <div class="loadingFullPosition" *ngIf="isLoad">
+    <div class="commonLoading"></div>
+  </div>
+</div>

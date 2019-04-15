@@ -1,0 +1,112 @@
+<div class="payouts-modal-content challenge-popup">
+  <div class="modal-header">
+    <button type="button" class="close" md-dialog-close>&times;</button>
+    <h4 class="modal-title">{{data.title}}</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newPayoutsForm" (ngSubmit)="onSubmit()">
+      <div formGroupName="charity">
+        <div class="bucket-type">
+          <label class="row-check">
+            <input type="checkbox"
+                   name="checkbox"
+                   formControlName="checkbox"/>
+            <span></span>
+            Charity ({{data.charitable_organization?.name || 'not have'}})
+            <strong *ngIf="!hasVendorForCharity">(Hasn`t vendor bill.com id)</strong>
+          </label>
+        </div>
+        <div class="payout-col">
+          <h5>Available for Payout
+            <span>{{formatCentsToDollars(data.available_for_payout_amount_in_cents.charity)}}</span>
+            <strong *ngIf="!canDoPayoutForCharity">(Min sum for payout {{formatCentsToDollars(minAmount)}})</strong>
+          </h5>
+        </div>
+        <div class="payout-type" *ngIf="newPayoutsForm.value.charity.checkbox">
+          <label class="row-radio mb-15">
+            <input type="radio"
+                   [value]="numberToDollars(data.available_for_payout_amount_in_cents.charity)"
+                   formControlName="amount"/>
+            <span>Payout complete amount ({{formatCentsToDollars(data.available_for_payout_amount_in_cents.charity)}})</span>
+          </label>
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-xs-6">
+              <label class="row-radio">
+                <input type="radio"
+                       [value]=""
+                       formControlName="amount"/>
+                <span>Specify amount (min {{formatCentsToDollars(minAmount)}})</span>
+              </label>
+            </div>
+            <div class="col-xs-6">
+              <input type="text"
+                     class="form-control"
+                     placeholder="Enter amount"
+                     name="specify"
+                     formControlName="specify"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div formGroupName="creator">
+        <div class="bucket-type">
+          <label class="row-check">
+            <input type="checkbox"
+                   name="checkbox"
+                   formControlName="checkbox"/>
+            <span></span>
+            Creator/Beneficiary
+            <strong *ngIf="!hasVendorForUser">(Hasn`t vendor bill.com id)</strong>
+          </label>
+        </div>
+        <div class="payout-col">
+          <h5>Available for Payout
+            <span>{{formatCentsToDollars(data.available_for_payout_amount_in_cents.user)}}</span>
+            <strong *ngIf="!canDoPayoutForUser">(Min sum for payout {{formatCentsToDollars(minAmount)}})</strong>
+          </h5>
+        </div>
+        <div class="payout-type" *ngIf="newPayoutsForm.value.creator.checkbox">
+          <label class="row-radio mb-15">
+            <input type="radio"
+                   name="amount"
+                   [value]="numberToDollars(data.available_for_payout_amount_in_cents.user)"
+                   formControlName="amount"/>
+            <span>Payout complete amount ({{formatCentsToDollars(data.available_for_payout_amount_in_cents.user)}})</span>
+          </label>
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-xs-6">
+              <label class="row-radio">
+                <input type="radio"
+                       name="amount"
+                       [value]=""
+                       formControlName="amount"/>
+                <span>Specify amount (min {{formatCentsToDollars(minAmount)}})</span>
+              </label>
+            </div>
+            <div class="col-xs-6">
+              <input type="text"
+                     class="form-control"
+                     name="specify"
+                     placeholder="Enter amount"
+                     formControlName="specify">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" md-dialog-close>Cancel</button>
+        <button type="submit"
+                class="btn btn-primary"
+                [disabled]="!newPayoutsForm.value.charity.checkbox && !newPayoutsForm.value.creator.checkbox ||
+                            newPayoutsForm.value.creator.checkbox && tempSendData.userAmount < numberToDollars(minAmount) ||
+                            newPayoutsForm.value.charity.checkbox && tempSendData.charityAmount < numberToDollars(minAmount)">
+          Create</button>
+      </div>
+    </form>
+  </div>
+  <div class="loadingFullPosition" *ngIf="isLoad">
+    <div class="commonLoading"></div>
+  </div>
+</div>

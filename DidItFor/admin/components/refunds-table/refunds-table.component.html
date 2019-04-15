@@ -1,0 +1,64 @@
+<div class="host-table">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          ID
+          <em (click)="changeSort(sortFields.id)"
+              [class.sort-on-asc]="isSorting(sortFields.id, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.id, orderFields.desc)"></em>
+        </th>
+        <th>
+          Challenge Name
+          <em (click)="changeSort(sortFields.challengeName)"
+              [class.sort-on-asc]="isSorting(sortFields.challengeName, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.challengeName, orderFields.desc)"></em>
+        </th>
+        <th>
+          Donor
+          <em (click)="changeSort(sortFields.donorName)"
+              [class.sort-on-asc]="isSorting(sortFields.donorName, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.donorName, orderFields.desc)"></em>
+        </th>
+        <th>
+          Amount
+          <em (click)="changeSort(sortFields.amount)"
+              [class.sort-on-asc]="isSorting(sortFields.amount, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.amount, orderFields.desc)"></em>
+        </th>
+        <th>
+          Created at
+          <em (click)="changeSort(sortFields.createdAt)"
+              [class.sort-on-asc]="isSorting(sortFields.createdAt, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.createdAt, orderFields.desc)"></em>
+        </th>
+        <th>
+          Status
+          <em (click)="changeSort(sortFields.status)"
+              [class.sort-on-asc]="isSorting(sortFields.status, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.status, orderFields.desc)"></em>
+        </th>
+        <th class="no-sort th-last-center"
+            *ngIf="!reportUse">
+          Actions
+          <em></em>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let refund of refunds">
+        <td>{{ refund.id }}</td>
+        <td>{{ refund.challenge.title }}</td>
+        <td>{{ refund.donor.name }}</td>
+        <td>{{ formatCentsToDollars(refund.refund_amount_in_cents) }}</td>
+        <td>{{ formatDate(refund.created_at) }}</td>
+        <td>{{ statuses[refund.status] }}</td>
+        <td *ngIf="!reportUse"
+            class="td-last-center">
+          <button class="btn btn-xs btn1"
+                  (click)="showInfo(refund)">Info</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

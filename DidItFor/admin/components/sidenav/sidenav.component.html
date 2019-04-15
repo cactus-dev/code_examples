@@ -1,0 +1,53 @@
+<div class="admin-sidenav-container">
+  <div class="left-column">
+    <div class="sidenav">
+      <ul>
+        <li class="active">
+          <a href="#" title="Finance">
+            <span class="nav-arrow">
+              <img src="assets/icon-wallet.png" alt="wallet" />
+            </span>
+            <span class="nav-icon">
+              <img src="assets/icon-dropdown.png" alt="dropdown" />
+            </span>
+            Finance
+          </a>
+          <ul>
+            <li>
+              <a [routerLink]="['payments']" title="Payments" routerLinkActive="active-link">Payments</a>
+            </li>
+            <li class="active">
+              <a [routerLink]="['payouts']" title="Payouts" routerLinkActive="active-link">Payouts</a>
+            </li>
+            <li>
+              <a [routerLink]="['challenges']" title="Challenges" routerLinkActive="active-link">Challenges</a>
+            </li>
+            <li>
+              <a [routerLink]="['refunds']" title="Refunds" routerLinkActive="active-link">Refunds</a>
+            </li>
+            <li>
+              <a [routerLink]="['reports']" title="Reports" routerLinkActive="active-link">Reports</a>
+            </li>
+            <li>
+              <a [routerLink]="['settings']" title="Settings" routerLinkActive="active-link">Settings</a>
+            </li>
+            <li>
+              <div *ngIf="quickbooksNotification"
+                   class="alert"
+                   [ngClass]="quickbooksNotification.cssClass">
+                {{quickbooksNotification.text}}
+              </div>
+            </li>
+            <li>
+              <div *ngIf="billComNotification"
+                   class="alert"
+                   [ngClass]="billComNotification.cssClass">
+                {{billComNotification.text}}
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

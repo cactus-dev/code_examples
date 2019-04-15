@@ -1,0 +1,14 @@
+@import './../quickbooks-integration/quickbooks-integration.component';
+
+.info {
+  margin: 15px 0;
+
+  .property {
+    font-size: 14px;
+    padding-right: 15px;
+  }
+
+  .status {
+    font-weight: 600;
+  }
+}

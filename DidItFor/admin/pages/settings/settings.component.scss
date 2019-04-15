@@ -1,0 +1,21 @@
+@import '../finance/finance.component';
+
+.content-column {
+  display: block;
+  padding: 0 20px;
+
+  .page-title {
+    font-size: 26px;
+    padding-bottom: 6px;
+  }
+
+  .integrations {
+    padding: 0 15px;
+
+    .integrations-title {
+      font-size: 22px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+  }
+}

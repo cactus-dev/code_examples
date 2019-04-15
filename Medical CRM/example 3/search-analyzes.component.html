@@ -1,0 +1,16 @@
+<div class="tipeahead-block">
+  <i [hidden]="searching" class="fa fa-search search-icon" aria-hidden="true"></i>
+  <i [hidden]="!searching" class="fa fa-spinner fa-spin fa-fw loading-icon" aria-hidden="true"></i>
+
+  <input id="typeahead-basic"
+         type="text"
+         class="form-control input-typeahead"
+         name="patient"
+         [(ngModel)]="model"
+         (selectItem)="selectItem($event)"
+         [ngbTypeahead]="search.bind(this)"
+         [resultFormatter]="formatter"
+         [inputFormatter]="formatter"
+         #input/>
+  <i [hidden]="!input.value" class="fa fa-times-circle delete-icon" aria-hidden="true" (click)="deleteText()"></i>
+</div>

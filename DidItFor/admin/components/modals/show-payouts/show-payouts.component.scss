@@ -1,0 +1,93 @@
+.payouts-modal-content {
+  position: relative;
+  width: 560px;
+
+  .modal-header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom-color: #e2e7eb;
+  }
+
+  h4 {
+    font-family: 'AmsiPro-SemiBold', 'Arial', sans-serif;
+    font-size: 19px;
+    color: #354052;
+    padding: 0 0 0 20px;
+  }
+
+  .modal-body {
+    padding: 35px 40px;
+  }
+
+  .modal-footer {
+    background: #eef1f7;
+    text-align: center;
+  }
+
+  table {
+    border: solid 1px #dadfe6;
+    border-radius: 4px;
+    color: #7f8fa4;
+    width: 100%;
+
+    thead {
+      border-bottom: solid 1px #dadfe6;
+    }
+
+    th {
+      padding: 15px 20px;
+    }
+
+    td {
+      padding: 8px 20px;
+    }
+
+    tr th:first-child,
+    tr td:first-child {
+      border-right: solid 1px #dadfe6;
+    }
+
+    .disabled-item {
+      text-decoration: line-through;
+    }
+  }
+
+  tbody tr:first-child td {
+    padding-top: 20px;
+  }
+
+  tbody tr:last-child td {
+    padding-bottom: 20px;
+  }
+
+  tfoot {
+    background: #fbfdff;
+    border-top: solid 1px #dadfe6;
+  }
+
+  tfoot tr td {
+    padding: 10px 20px;
+  }
+
+  p {
+    padding: 20px 0 15px 0;
+    margin: 0;
+    font-family: 'AmsiPro-SemiBold', 'Arial', sans-serif;
+  }
+
+  .row-check {
+    color: #7f8fa4;
+  }
+
+  .row-check input + span {
+    margin: 0 7px -3px 0;
+  }
+
+  .modal-footer .btn {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0 10px;
+    font-size: 14px;
+  }
+}
+

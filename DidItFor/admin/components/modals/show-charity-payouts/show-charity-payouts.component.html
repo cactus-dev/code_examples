@@ -1,0 +1,47 @@
+<div class="payouts-modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" md-dialog-close>&times;</button>
+    <h4 class="modal-title">Charity Batch Payout</h4>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Charity Name</th>
+            <th width="165">Available Money</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td [class.disabled-item]="!canDoPayouts(item)">{{item.title}}</td>
+            <td [class.disabled-item]="!canDoPayouts(item)">{{formatCentsToDollars(item.available_for_payout_amount_in_cents.charity)}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total Sum</td>
+            <td>{{formatCentsToDollars(totalDonations)}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <p>Payout all the available donations available for</p>
+      <label class="row-check">
+        <input type="checkbox"
+                name="checkbox"
+                [(ngModel)]="checkCharity"/>
+        <span></span>
+        Charity
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" md-dialog-close>Cancel</button>
+      <button type="submit"
+              class="btn btn-primary"
+              [disabled]="!checkCharity">Create</button>
+    </div>
+  </form>
+  <div class="loadingFullPosition" *ngIf="isLoad">
+    <div class="commonLoading"></div>
+  </div>
+</div>

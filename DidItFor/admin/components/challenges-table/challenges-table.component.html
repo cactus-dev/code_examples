@@ -1,0 +1,94 @@
+<div class="host-table">
+  <table>
+    <thead>
+      <tr>
+        <th class="no-sort th-first-center">
+          <label class="row-check">
+            <input type="checkbox"
+                    name="checkbox"
+                    [(ngModel)]="allChecked"
+                    [disabled]="checkedCheckbox"/>
+            <span></span>
+          </label>
+        </th>
+        <th>
+          ID
+          <em (click)="changeSort(sortFields.id)"
+              [class.sort-on-asc]="isSorting(sortFields.id, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.id, orderFields.desc)"></em>
+        </th>
+        <th>
+          Challenge Name
+          <em (click)="changeSort(sortFields.challengeName)"
+              [class.sort-on-asc]="isSorting(sortFields.challengeName, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.challengeName, orderFields.desc)"></em>
+        </th>
+        <th>
+          Total Donations
+          <em (click)="changeSort(sortFields.totalDonation)"
+              [class.sort-on-asc]="isSorting(sortFields.totalDonation, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.totalDonation, orderFields.desc)"></em>
+        </th>
+        <th>
+          Payout Pending Amount
+        </th>
+        <th>
+          Available for Payout
+          <em (click)="changeSort(sortFields.availableForPayout)"
+              [class.sort-on-asc]="isSorting(sortFields.availableForPayout, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.availableForPayout, orderFields.desc)"></em>
+        </th>
+        <th>
+          Total Paid Out
+        </th>
+        <th>
+          Last Payout Date
+          <em (click)="changeSort(sortFields.lastPayoutAt)"
+              [class.sort-on-asc]="isSorting(sortFields.lastPayoutAt, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.lastPayoutAt, orderFields.desc)"></em>
+        </th>
+        <th>
+          Info
+        </th>
+        <th class="no-sort th-last-center">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let challenge of challenges"
+          [class.disabled-item]="!checkBankAccount(challenge)">
+        <td class="td-center td-first-center">
+          <label class="row-check"
+                 [tooltip]="showInfoAboutDisabledCheckBox(challenge)"
+                 placement="right">
+            <input type="checkbox"
+                   name="checkbox"
+                   [disabled]="!checkBankAccount(challenge) || !canDoPayouts(challenge)"
+                   [(ngModel)]="challenge.checked"/>
+            <span [class.disabled-checkbox]="!checkBankAccount(challenge) || !canDoPayouts(challenge)"></span>
+          </label>
+        </td>
+        <td>{{challenge.id}}</td>
+        <td>{{challenge.title}}</td>
+        <td>{{formatCentsToDollars(challenge.total_donation_amount_in_cents)}}</td>
+        <td>{{formatUserCharityTotal(challenge.payout_pending_amount_in_cents)}}</td>
+        <td>{{formatUserCharityTotal(challenge.available_for_payout_amount_in_cents)}}</td>
+        <td>{{formatUserCharityTotal(challenge.total_paid_out_amount_in_cents)}}</td>
+        <td>{{formatDate(challenge.last_payout_at)}}</td>
+        <td>{{challenge.info}}</td>
+        <td class="td-last-center">
+            <button *ngIf="checkBankAccount(challenge) && canDoPayouts(challenge)"
+                    class="btn btn-xs btn1"
+                    (click)="showNewPayoutsModal(challenge)">New payouts</button>
+            <button *ngIf="checkBankAccount(challenge) && isPayout(challenge)"
+                    class="btn btn-xs btn2"
+                    (click)="showPayouts(challenge)">Show payouts</button>
+            <button *ngIf="!checkBankAccount(challenge) || !canDoPayouts(challenge) && !isPayout(challenge)"
+                    class="btn btn-xs btn1"
+                    (click)="showInfoModal(challenge)">Info</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

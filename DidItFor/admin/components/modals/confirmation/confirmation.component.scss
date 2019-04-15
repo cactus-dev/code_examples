@@ -1,0 +1,26 @@
+
+.confirmation-popup {
+  width: 370px;
+
+  .modal-footer {
+    background: #eef1f7;
+    text-align: center;
+
+    .btn {
+      width: 115px;
+      margin: 0 10px;
+    }
+  }
+
+  .modal-body {
+    padding: 50px 0;
+  }
+
+  .modal-body p {
+    line-height: 21px;
+    color: #354052;
+    font-family: 'AmsiPro-SemiBold', 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+  }
+}

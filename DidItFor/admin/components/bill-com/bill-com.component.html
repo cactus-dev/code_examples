@@ -1,0 +1,33 @@
+<div class="integration">
+  <div class="integration-header">
+    <img class="integration-image" src="./assets/bill_com.png"/>
+    <h2 class="integration-title">Bill.com</h2>
+  </div>
+  <div class="integration-body" *ngIf="!isLoad">
+    <div class="info">
+      <span class="property">
+        Status:
+      </span>
+      <span class="status">
+        {{infoBillCom?.success ? 'Enable' : 'Disable'}}
+      </span>
+    </div>
+    <button *ngIf="!infoBillCom?.success"
+            class="btn btn-xs enable"
+            (click)="openFormLogin()">
+      Enable
+    </button>
+    <button *ngIf="infoBillCom?.success"
+            class="btn btn-xs disable"
+            (click)="disableSession()">
+      Disable
+    </button>
+    <button class="btn btn-xs update-token"
+            (click)="checkStatus()">
+      Check status
+    </button>
+  </div>
+  <div class="integration-waiting" *ngIf="isLoad">
+    <div class="integration-loader"></div>
+  </div>
+</div>

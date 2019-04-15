@@ -1,0 +1,138 @@
+$general-color: #498bee;
+
+.modal-content {
+  border: solid 3px $general-color;
+
+  .modal-title {
+    font-weight: 300;
+  }
+}
+
+:host {
+  height: 100%;
+}
+
+/deep/ .backdrop-show-recomendation-component {
+  .modal-dialog {
+    max-width: 100%;
+    margin: auto;
+    max-height: 100%;
+    height: 100%;
+  }
+
+  .modal-content {
+    height: 100%;
+
+    .modal-content {
+      height: 100%;
+
+      .modal-header {
+        height: 40px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 0;
+        justify-content: flex-end;
+
+        .actions {
+          background-color: $general-color;
+          padding: 0 15px;
+          border-bottom-left-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+
+        button {
+          padding: 3px 8px;
+          background: 0;
+          color: #FFF;
+          font-size: 24px;
+        }
+
+        .btn-minimize {
+          font-size: 15px;
+          border: 0;
+          background: 0;
+          cursor: pointer;
+        }
+      }
+
+      .modal-body {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+
+        &.show-full-constructor {
+          padding-left: 0;
+
+          .third-part {
+            width: 100%;
+          }
+        }
+      }
+
+      .title {
+        font-size: 16px;
+        margin-bottom: 24px;
+      }
+
+      .list-block {
+        overflow: scroll;
+        height: calc(100% - 32px);
+      }
+
+      .first-part {
+        overflow: scroll;
+      }
+
+      .second-part, .third-part, .first-part {
+        width: 33.333333%;
+        padding: 10px;
+        max-height: 100%;
+        position: relative;
+        height: calc(100% - 70px);
+
+        #preloader {
+          bottom: 0;
+          right: 0;
+          position: absolute;
+          background: white;
+          padding: 35px;
+          z-index: 2;
+
+          & > div {
+            width: 75px;
+            height: 75px;
+            margin: auto;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+
+      .not-choosen {
+        width: 100%;
+        padding: 5px;
+        background-color: #f5f5f5;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .text-view {
+        max-height: calc(100% - 41px);
+        overflow: scroll;
+
+        textarea {
+          height: 100%;
+          width: 100%;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+/deep/ app-name-analysis {
+  height: 100%;
+}
+

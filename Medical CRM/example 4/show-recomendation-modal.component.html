@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="actions">
+      <button class="btn-minimize" (click)="minimizeModal()">
+        <i class="fa fa-window-minimize" aria-hidden="true"></i>
+      </button>
+
+      <button class="btn" aria-label="Close" (click)="closeModal()">
+        <i class="ion-android-close" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <div class="first-part">
+      <app-info-patient *ngIf="userMedicalInfo" [patientInfo]="userMedicalInfo"></app-info-patient>
+    </div>
+    <div class="second-part">
+      <h3 class="title" translate>chat.analysis.constructor.title_list_analysis</h3>
+      <div class="not-choosen" *ngIf="!choosenAnalyzes.length">{{ 'chat.analysis.constructor.add_title' | translate }}</div>
+      <div class="list-block">
+        <app-name-analysis *ngFor="let analysisName of choosenAnalyzes"
+                           hideDeleteBtn="true"
+                           [analysisName]="analysisName"></app-name-analysis>
+      </div>
+    </div>
+    <div class="third-part">
+      <h3 class="title" translate>recomendations.title_for_chat</h3>
+      <div class="text-view">
+        <ckeditor [(ngModel)]="info"
+                  name="myckeditor"
+                  [config]="ckeConfig">
+        </ckeditor>
+      </div>
+    </div>
+  </div>
+</div>

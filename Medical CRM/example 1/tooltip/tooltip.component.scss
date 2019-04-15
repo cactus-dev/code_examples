@@ -1,0 +1,11 @@
+:host .tooltip-container {
+  position: absolute;
+  height: max-content;
+  z-index: 10000;
+  font-size: 12px;
+  border-radius: 3px;
+  background-color: #fffacd;
+  padding: 7px;
+  user-select: none;
+  pointer-events: none;
+}

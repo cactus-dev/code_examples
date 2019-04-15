@@ -1,0 +1,22 @@
+<div class="pagination pull-right">
+    <p class="pull-left">
+        Displaying {{ recordName }}
+        <strong>{{ resultsNumbersTitle() }}</strong>
+        of <strong>{{ totalCount }}</strong> in total
+    </p>
+    <ul class="pull-left">
+        <li *ngFor="let page of pages"
+            [class.active]="currentPage === page">
+            <a (click)="goToPage(page)">{{ page }}</a>
+        </li>
+        <li *ngIf="showDotsAfterPages()">
+            <span>...</span>
+        </li>
+        <li>
+            <a (click)="nextPage()">Next</a>
+        </li>
+        <li class="last">
+            <a (click)="lastPage()">Last</a>
+        </li>
+    </ul>
+</div>

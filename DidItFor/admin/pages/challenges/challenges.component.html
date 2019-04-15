@@ -1,0 +1,99 @@
+<div class="right-content-admin">
+  <!-- start content column -->
+  <div class="content-column challenges-page">
+    <!-- start top content -->
+    <div class="row">
+      <div class="col-xs-6">
+        <h2 class="page-title pb-100">Challenges</h2>
+          <select class="select-box width-200"
+                  (change)="selectAction($event)" #selectField>
+            <option [value]="" disabled selected>Select action</option>
+            <option *ngFor="let action of actions;let i = index;" [value]="i">{{action}}</option>
+          </select>
+      </div>
+      <div class="col-xs-6">
+        <div class="filter-column pull-right">
+          <form class="form-inline" novalidate>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-4 pr-0">
+                  <label for="search">Search challenges</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text"
+                         class="form-control search-input"
+                         name="title"
+                         [(ngModel)]="params.q"
+                         (ngModelChange)="onQueryChange.next()">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-4 pr-0">
+                  <label for="since">Challenges since</label>
+                </div>
+                <div class="col-xs-8">
+                  <my-date-picker name="mydate"
+                                  [options]="myDatePickerOptions"
+                                  [(ngModel)]="dateSince"
+                                  (ngModelChange)="onFilterChanged()"></my-date-picker>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-4 pr-0">
+                  <label for="payout">Payout available</label>
+                </div>
+                <div class="col-xs-8">
+                  <select class="form-control select-box"
+                          [(ngModel)]="params.payout_available"
+                          (ngModelChange)="onFilterChanged()"
+                          name="available">
+                    <option [ngValue]="null">Not selected</option>
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-4 pr-0">
+                  <label for="minamount">Enter min. amount</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text"
+                         class="form-control amount-input"
+                         name="minamount"
+                         [(ngModel)]="minAmount"
+                         (ngModelChange)="onQueryChange.next()">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="dinamic-data">
+      <div class="table-column" *ngIf="challenges">
+        <app-challenges-table [(challenges)]="challenges"
+                              [(sortBy)]="params.sort_by"
+                              [(orderBy)]="params.sort_order"
+                              (changeSortBy)="changeSortBy($event)"
+                              (updateChallenges)="getChallenges()"></app-challenges-table>
+        <app-pagination recordName="challenges"
+                        [totalCount]="extra.total_count"
+                        [resultsCount]="extra.results_count"
+                        [limitPerPage]="params.per"
+                        [(currentPage)]="params.page"
+                        (currentPageChange)="getChallenges()">
+        </app-pagination>
+      </div>
+      <div class="loadingFullPosition" *ngIf="isLoad">
+        <div class="commonLoading"></div>
+      </div>
+    </div>
+  </div>
+</div>

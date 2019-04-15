@@ -1,0 +1,26 @@
+.reports {
+  height: calc(100vh - 70px);
+  top: 70px;
+  position: relative;
+  background-color: #f6f7fa;
+
+  .form-report {
+    margin: 0 auto;
+    width: 500px;
+    position: relative;
+    top: 10px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(216, 226, 234, 0.5);
+    border-radius: 4px;
+  }
+
+  .radio-buttons {
+    display: flex;
+    margin: 20px 0;
+
+    & > label {
+      flex-grow: 1;
+    }
+  }
+}

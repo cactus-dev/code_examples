@@ -1,0 +1,13 @@
+@import '../show-payouts/show-payouts.component';
+
+.payouts-modal-content {
+  width: 450px;
+
+  .modal-body {
+    padding: 35px 50px;
+  }
+
+  .modal-footer {
+    text-align: right;
+  }
+}

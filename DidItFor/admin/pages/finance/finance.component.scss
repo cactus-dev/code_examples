@@ -1,0 +1,143 @@
+$white: #fff;
+$bcg: #f6f7fa;
+$color-text: rgba(38, 58, 91, .9);
+$border-color: #c7cad5;
+$text-select-box: rgba(38, 58, 91, .4);
+$filter-shadow: rgba(216, 226, 234, 0.5);
+$form-control-text: #555;
+$label-text: rgba(38, 58, 91, .7);
+
+.admin-finance-container {
+  background: $bcg;
+  font-size: 16px;
+  color: $color-text;
+  font-family: 'AmsiPro','Arial', sans-serif;
+  height: 100vh;
+}
+
+.dinamic-data {
+  position: relative;
+}
+
+.reset-button {
+  cursor: pointer;
+  font-size: 14px;
+  position: absolute;
+  right: 2px;
+  top: 6px;
+}
+
+.right-column-admin {
+  background: $bcg;
+  font-size: 16px;
+  color: $color-text;
+  width: calc(100% - 250px);
+  height: 100%;
+  padding: 70px 0 0 0;
+  float: left;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.right-content-admin {
+  select:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .width-200 {
+    width: 200px !important;
+  }
+
+  .pb-100 {
+    padding-bottom: 100px !important;
+  }
+
+  .pb-60 {
+    padding-bottom: 60px !important;
+  }
+
+  .pr-0 {
+    padding-right: 0!important;
+  }
+
+  .mb-15 {
+    margin-bottom: 15px !important;
+  }
+
+  .select-box {
+    background: $white url(/assets/icon-dropdown.png) no-repeat right 10px center;
+    border: solid 1px $border-color;
+    border-radius: 6px;
+    width:100%;
+    height: 38px;
+    padding: 0 25px 0 15px;
+    font-size: 14px;
+    color: $text-select-box;
+    -webkit-appearance: none;
+    appearance: none;
+    text-overflow: ellipsis;
+  }
+
+  .content-column {
+    padding: 15px 20px;
+
+    & > .row {
+      margin-bottom: 20px;
+    }
+  }
+
+  .page-title {
+    font-size: 26px;
+    margin: 6px 0 0 0;
+  }
+
+  .filter-column {
+    width: 240px;
+    box-shadow: 0 1px 3px $filter-shadow;
+    border-radius: 4px;
+    background-color: $white;
+    padding: 12px 13px 0 13px;
+
+    label {
+      font-size: 12px;
+      line-height: 13px;
+      color: $label-text;
+      margin: 0;
+    }
+
+    .form-control {
+      max-width: 100%;
+      width: 100%;
+      height: 28px;
+      color: $form-control-text;
+    }
+
+    .form-group {
+      padding-bottom: 12px;
+      width: 100%;
+    }
+
+    .search-input {
+      background-image: url(/assets/icon-search.png);
+      background-repeat: no-repeat;
+      background-position: 8px center;
+      padding-left: 25px;
+    }
+
+    .date-input {
+      background-image: url(/assets/icon-calendar.png);
+      background-repeat: no-repeat;
+      background-position: right 7px center;
+      padding-right: 25px;
+    }
+
+    .amount-input {
+      background-image: url(/assets/icon-dollar.png);
+      background-repeat: no-repeat;
+      background-position: 9px center;
+      padding-left: 22px;
+    }
+  }
+}

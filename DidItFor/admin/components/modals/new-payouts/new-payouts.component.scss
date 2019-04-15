@@ -1,0 +1,82 @@
+@import '../show-payouts/show-payouts.component';
+
+.challenge-popup {
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .bucket-type {
+    padding: 20px 30px;
+    border-bottom: solid 1px #dadee1;
+  }
+
+  .row-check {
+    color: #354052;
+  }
+
+  .payout-col {
+    padding: 12px 30px;
+    border-bottom: solid 1px #dadee1;
+    background: #f9fafc;
+  }
+
+  .payout-col h5 {
+    font-size: 14px;
+    color: #354052;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  .payout-col h5 span {
+    display: block;
+    font-size: 19px;
+    color: #263a5b;
+    font-family: 'AmsiPro-SemiBold', 'Arial', sans-serif;
+    padding: 3px 0 0 0;
+  }
+
+  .payout-type {
+    padding: 25px 30px 30px;
+    color: #7f8fa4;
+    background: #f9fafc;
+    border-bottom: solid 1px #dadee1;
+  }
+
+  .row-radio {
+    font-weight: normal;
+    padding: 4px 0 0 0;
+  }
+
+  .row-radio input {
+    margin: 0 10px 0 0;
+  }
+
+  input::placeholder {
+    color: rgba(53, 64, 82, .34);
+  }
+
+  .row-radio span {
+    display: inline-block;
+  }
+
+  .popup-container.confirmation-popup .modal-content {
+    width: 370px;
+  }
+
+  .confirmation-popup .modal-footer .btn {
+    width: 115px;
+  }
+
+  .confirmation-popup .modal-body {
+    padding: 50px;
+  }
+
+  .confirmation-popup .modal-body p {
+    line-height: 21px;
+    color: #354052;
+    font-family: 'AmsiPro-SemiBold', 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+  }
+}

@@ -1,0 +1,122 @@
+<div class="host-report">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Challenges</h2>
+      <form>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-xs-6">
+              <input [(ngModel)]="challenge.q"
+                     [typeahead]="getChallenges"
+                     typeaheadOptionField="title"
+                     typeaheadWaitMs="300"
+                     autocomplete="off"
+                     (typeaheadOnSelect)="onSelectTypeahead($event)"
+                     name="name"
+                     class="form-control"
+                     placeholder="Search for a challenge">
+              <div class="date-picker">
+                  <label for="after">Date after</label>
+                  <my-date-picker name="dateFrom"
+                                  [options]="myDatePickerOptionsAfter"
+                                  [(ngModel)]="dateAfter"
+                                  (dateChanged)="disableBefore($event)"
+                                  (ngModelChange)="selectChallenge()"></my-date-picker>
+                </div>
+                <div class="date-picker">
+                  <label for="before">Date before</label>
+                  <my-date-picker name="dateBefore"
+                                  [options]="myDatePickerOptionsBefore"
+                                  [(ngModel)]="dateBefore"
+                                  (dateChanged)="disableAfter($event)"
+                                  (ngModelChange)="selectChallenge()"></my-date-picker>
+                </div>
+            </div>
+            <div class="col-xs-3">
+              <form ngNoForm
+                    *ngIf="canDownloadReport()"
+                    method="post"
+                    [action]="reportFileUrl()">
+                <input type="hidden"
+                       name="access_token"
+                       [value]="accessToken">
+                <input type="hidden"
+                       name="challenge_id"
+                       [value]="params.challenge_id">
+                <input type="hidden"
+                       name="from"
+                       [value]="params.created_after">
+                <input type="hidden"
+                       name="to"
+                       [value]="params.created_before">
+                <input type="submit"
+                       class="btn btn-default"
+                       value="Download report"
+                       [disabled]="!canDownloadReport()">
+              </form>
+              <p *ngIf="!canDownloadReport()" class="download-notice">
+                To download report please search for specific challenge and
+                adjust date range to match your needs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ul class="nav nav-tabs nav-justified">
+    <li [class.active-tab]="tabSelected === 'payments'">
+      <a (click)="!tabIsActive('payments') && getPaymentsByIdChallenge()">Payments</a>
+    </li>
+    <li [class.active-tab]="tabSelected === 'payouts'">
+      <a (click)="!tabIsActive('payouts') && getPayoutsByIdChallenge()">Payouts</a>
+    </li>
+    <li [class.active-tab]="tabSelected === 'refunds'">
+      <a (click)="!tabIsActive('refunds') && getRefundsByIdChallenge()">Refunds</a>
+    </li>
+  </ul>
+  <ng-container *ngIf="payments && tabSelected === 'payments'">
+    <app-payments-table [(payments)]="payments"
+                        [reportUse]="true"
+                        [(sortBy)]="params.sort_by"
+                        [(orderBy)]="params.sort_order"
+                        (changeSortBy)="changeSortBy($event)"></app-payments-table>
+    <app-pagination recordName="payments"
+                    [totalCount]="extra.total_count"
+                    [resultsCount]="extra.results_count"
+                    [limitPerPage]="params.per"
+                    [(currentPage)]="params.page"
+                    (currentPageChange)="getPaymentsByIdChallenge()"></app-pagination>
+  </ng-container>
+  <ng-container *ngIf="payouts && tabSelected === 'payouts'">
+    <app-payouts-table [(payouts)]="payouts"
+                       [reportUse]="true"
+                       [(sortBy)]="params.sort_by"
+                       [(orderBy)]="params.sort_order"
+                       (changeSortBy)="changeSortBy($event)"></app-payouts-table>
+    <app-pagination recordName="payouts"
+                    [totalCount]="extra.total_count"
+                    [resultsCount]="extra.results_count"
+                    [limitPerPage]="params.per"
+                    [(currentPage)]="params.page"
+                    (currentPageChange)="getPayoutsByIdChallenge()"></app-pagination>
+  </ng-container>
+  <ng-container *ngIf="refunds && tabSelected === 'refunds'">
+    <app-refunds-table [(refunds)]="refunds"
+                       [(sortBy)]="params.sort_by"
+                       [(orderBy)]="params.sort_order"
+                       [reportUse]="true"
+                       (changeSortBy)="changeSortBy($event)"></app-refunds-table>
+    <app-pagination recordName="refunds"
+                    [totalCount]="extra.total_count"
+                    [resultsCount]="extra.results_count"
+                    [limitPerPage]="params.per"
+                    [(currentPage)]="params.page"
+                    (currentPageChange)="getRefundsByIdChallenge()"></app-pagination>
+  </ng-container>
+  <div class="spinner-reports">
+    <div class="loadingFullPosition" *ngIf="isLoad">
+      <div class="commonLoading"></div>
+    </div>
+  </div>
+</div>

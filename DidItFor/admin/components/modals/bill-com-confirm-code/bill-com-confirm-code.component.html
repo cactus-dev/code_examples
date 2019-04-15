@@ -1,0 +1,26 @@
+<div class="payouts-modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" md-dialog-close>&times;</button>
+    <h4 class="modal-title">Enter code ({{timer}}sec)</h4>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <div class="row">
+        <input type="text"
+                name="code"
+                [disabled]="!checkTimer"
+                class="form-control"
+                [(ngModel)]="code">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit"
+              class="btn btn-primary"
+              [class.btn-danger]="!checkTimer"
+              [disabled]="!checkCode">Confirm</button>
+    </div>
+  </form>
+  <div class="loadingFullPosition" *ngIf="isLoad">
+    <div class="commonLoading"></div>
+  </div>
+</div>

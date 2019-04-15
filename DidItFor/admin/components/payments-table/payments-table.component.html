@@ -1,0 +1,87 @@
+<div class="host-table">
+  <table>
+    <thead>
+      <tr>
+        <th class="no-sort th-first-center"
+            *ngIf="!reportUse">
+          <label class="row-check">
+            <input type="checkbox"
+                  name="checkbox"
+                  [(ngModel)]="allChecked"
+                  [disabled]="checkedCheckbox"/>
+            <span></span>
+          </label>
+        </th>
+        <th>
+          ID
+          <em (click)="changeSort(sortFields.id)"
+              [class.sort-on-asc]="isSorting(sortFields.id, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.id, orderFields.desc)"></em>
+        </th>
+        <th>
+          Challenge Name
+          <em (click)="changeSort(sortFields.challengeName)"
+              [class.sort-on-asc]="isSorting(sortFields.challengeName, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.challengeName, orderFields.desc)"></em>
+        </th>
+        <th>
+          Donor
+          <em (click)="changeSort(sortFields.donor)"
+              [class.sort-on-asc]="isSorting(sortFields.donor, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.donor, orderFields.desc)"></em>
+        </th>
+        <th>
+          Donated At
+          <em (click)="changeSort(sortFields.donatedAt)"
+              [class.sort-on-asc]="isSorting(sortFields.donatedAt, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.donatedAt, orderFields.desc)"></em>
+        </th>
+        <th>
+          Amount
+          <em (click)="changeSort(sortFields.amount)"
+              [class.sort-on-asc]="isSorting(sortFields.amount, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.amount, orderFields.desc)"></em>
+        </th>
+        <th>
+          Status
+          <em (click)="changeSort(sortFields.status)"
+              [class.sort-on-asc]="isSorting(sortFields.status, orderFields.asc)"
+              [class.sort-on-desc]="isSorting(sortFields.status, orderFields.desc)"></em>
+        </th>
+        <th *ngIf="!reportUse" class="no-sort th-last-center">Actions
+          <em></em>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments"
+          [class.disabled-item]="!reportUse && !canCancelPayment(payment)">
+        <td *ngIf="!reportUse"
+            class="td-first-center">
+          <label class="row-check">
+            <input type="checkbox"
+                  name="checkbox"
+                  [disabled]="!canCancelPayment(payment)"
+                  [(ngModel)]="payment.checked"/>
+            <span></span>
+          </label>
+        </td>
+        <td>{{ payment.id }}</td>
+        <td>{{ payment.challenge.title }}</td>
+        <td>{{ payment.user?.name || 'undefined' }}</td>
+        <td>{{ formatDateToView(payment.created_at) }}</td>
+        <td>{{ formatCentsToDollars(payment.amount_in_cents) }}</td>
+        <td>{{ statuses[payment.status] }}</td>
+        <td *ngIf="!reportUse"
+            class="td-last-center">
+          <button class="btn btn-xs btn1"
+                  *ngIf="canCancelPayment(payment)"
+                  (click)="openDialogConfirmationRefund(payment)">Refund</button>
+          <div class="clearfix"></div>
+          <button class="btn btn-xs btn2"
+                  (click)="openDialogInfoAboutPayment(payment)">Info</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
